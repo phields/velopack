@@ -100,8 +100,8 @@ fn try_legacy_migration(root_dir: &PathBuf, app: &bundle::Manifest) -> Result<()
         warn!("Failed to remove shortcuts ({}).", e);
     }
 
-    info!("Creating new default shortcuts...");
-    let _ = windows::create_default_lnks(&root_dir, &app);
+    info!("Creating new shortcuts...");
+    let _ = windows::create_or_update_manifest_lnks(&root_dir, &app, None);
 
     Ok(())
 }

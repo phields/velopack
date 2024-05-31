@@ -181,8 +181,8 @@ fn install_impl(pkg: &bundle::BundleInfo, root_path: &PathBuf, tx: &std::sync::m
         bail!("The main executable could not be found in the package. Please contact the application author.");
     }
 
-    info!("Creating new default shortcuts...");
-    let _ = windows::create_default_lnks(&root_path, &app);
+    info!("Creating shortcuts...");
+    let _ = windows::create_or_update_manifest_lnks(&root_path, &app, None);
 
     let ver_string = app.version.to_string();
     info!("Starting process install hook: \"{}\" --veloapp-install {}", &main_exe_path, &ver_string);
